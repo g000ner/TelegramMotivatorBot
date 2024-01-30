@@ -1,4 +1,4 @@
-﻿namespace DSK.Telegram.MotivatorBot;
+﻿namespace DK.Telegram.MotivatorBot;
 
 public class Startup
 {

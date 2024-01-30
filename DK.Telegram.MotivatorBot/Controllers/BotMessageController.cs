@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace DSK.Telegram.MotivatorBot.Controllers;
+namespace DK.Telegram.MotivatorBot.Controllers;
 
 [ApiController]
 [Route("api/message")]
