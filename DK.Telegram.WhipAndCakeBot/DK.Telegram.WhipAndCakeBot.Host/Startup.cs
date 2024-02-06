@@ -1,4 +1,7 @@
-﻿namespace DK.Telegram.MotivatorBot;
+﻿using DK.Telegram.WhipAndCakeBot.Host.Bots;
+using Newtonsoft.Json.Serialization;
+
+namespace DK.Telegram.WhipAndCakeBot.Host;
 
 public class Startup
 {
@@ -30,8 +33,22 @@ public class Startup
     /// <param name="services">Web app services collection</param>
     public void ConfigureServices(IServiceCollection services)
     {
+        var builder = new ConfigurationBuilder();
+        builder.SetBasePath(Directory.GetCurrentDirectory());
+        builder.AddJsonFile("appsettings.json");
+        builder.AddEnvironmentVariables();
+        var config = builder.Build();
+        
         services.AddLogging();
-        services.AddControllers();
+        // todo пока создаю бота через контроллер - иначе не пробрасывается веб хук до tg api
+        services.AddSingleton(new Bot(config));
+        services.AddControllers().AddNewtonsoftJson(options =>
+        {
+            options.SerializerSettings.ContractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            };
+        });
     }
 
     /// <summary>

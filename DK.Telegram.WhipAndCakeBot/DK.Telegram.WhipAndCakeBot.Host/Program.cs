@@ -1,10 +1,10 @@
-namespace DK.Telegram.MotivatorBot;
+namespace DK.Telegram.WhipAndCakeBot.Host;
 
 public class Program
 {
     public static Task Main(string[] args)
     {
-        return Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(app =>
+        return Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(app =>
             {
                 app.UseStartup<Startup>();
             })
